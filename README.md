@@ -153,10 +153,10 @@ $ cd /$ANDROID_HOME/emulator/
 $ ./emulator -avd "AFD2_API_30"
 ```
 
-Below are several print screens of Android running inside the emulator:
-
-![Android home screen](Android-1.png "Android home screen on the emulator")
-![Android settings screen](Android.png "Settings screen on the emulator")
+Below are several print screens of Android running inside the emulator.
+Android home screen        |  Settings screen
+:-------------------------:|:-------------------------:
+![Android home screen](Android-1.png "Android home screen on the emulator")  | ![Android settings screen](Android.png "Settings screen on the emulator")
 <!-- ![Android app list](Android-2.png "Android app list on the emulator") -->
 
 ### 4.6 Install apps
