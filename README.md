@@ -59,11 +59,9 @@ sudo apt install adb
 
 ## 3. Setup Windows OS envoironment 
 
-1. [Download the Android SDK Platform Tools ZIP file for Windows](https://dl.google.com/android/repository/platform-tools-latest-windows.zip)
+1. Follow the steps listed here: https://dev.to/koscheyscrag/how-to-install-android-emulator-without-installing-android-studio-3lce until step `11.`
 
-2. Follow the steps listed here: https://dev.to/koscheyscrag/how-to-install-android-emulator-without-installing-android-studio-3lce until step `11.`
-
-3. After step `11.` follow the steps from [Commands to create an Android Virtual Device (AVD)](#commands-to-create-an-android-virtual-device-avd), however:
+2. After step `11.` follow the steps from [Commands to create an Android Virtual Device (AVD)](#commands-to-create-an-android-virtual-device-avd), however:
    - remove the `./` before each command
    - change the Linux `/` to the Windows `\`, except on topic [5. Forensics analysis of Android apps](#5-forensics-analysis-of-android-apps)
   
