@@ -1,38 +1,43 @@
 # Android4QEMU
-How to setup and run Android Emulator without Android Studio
+To run Android on our PCs there are several options, being [Android Studio](https://developer.android.com/studio) one of them. However, Android Studio was created for Android developers and has a complex GUI with lots of features. Therefore, consumes lots of resources even without running the embedded emulator. To test apps and the files they generate, we don't need the Android Studio GUI.
 
-## Credits 
-The credits should go to the authors of these publications that I used to create this file:
-- https://linuxhint.com/setup-android-emulator-without-installing-android-studio-in-linux/
-- https://dev.to/koscheyscrag/how-to-install-android-emulator-without-installing-android-studio-3lce
+This page explains how to set up and run the Android Studio Emulator **without** the Android Studio GUI.
 
 
 # Table of Contents
 - [Android4QEMU](#android4qemu)
-  - [Credits](#credits)
 - [Table of Contents](#table-of-contents)
-  - [Preperation (Linux and Windows)](#preperation-linux-and-windows)
-  - [Setup Linux OS envoironment](#setup-linux-os-envoironment)
-  - [Setup Windows OS envoironment](#setup-windows-os-envoironment)
-  - [Commands to create an Android Virtual Device (AVD)](#commands-to-create-an-android-virtual-device-avd)
+  - [Credits](#credits)
+  - [1. Preperation](#1-preperation)
+  - [2. Setup Linux OS envoironment](#2-setup-linux-os-envoironment)
+  - [3. Setup Windows OS envoironment](#3-setup-windows-os-envoironment)
+  - [4. Commands to create an Android Virtual Device (AVD)](#4-commands-to-create-an-android-virtual-device-avd)
     - [Install Required Packages](#install-required-packages)
     - [Select the correct System Image to use](#select-the-correct-system-image-to-use)
     - [Download and install the selected system-image](#download-and-install-the-selected-system-image)
     - [Create a new AVD](#create-a-new-avd)
     - [Run the AVD](#run-the-avd)
     - [Install apps](#install-apps)
-  - [Forensics analysis of Android apps](#forensics-analysis-of-android-apps)
+  - [5. Forensics analysis of Android apps](#5-forensics-analysis-of-android-apps)
     - [Important dirs](#important-dirs)
     - [Extract data](#extract-data)
 
+## Credits 
+This page is heavely based on:
+- https://linuxhint.com/setup-android-emulator-without-installing-android-studio-in-linux/
 
-## Preperation (Linux and Windows)
+Therefore, credits should go to its authors.
+
+
+
+## 1. Preperation
 
 1. Download the latest version of [Android Command Line Tools](https://developer.android.com/studio#downloads) for your Operating System (OS) (scroll down to the command line section).
+   
 2. Extract the downloaded archive and make a new folder named “tools” inside “cmdline-tools” directory. Copy and paste all files from “cmdline-tools” folder to “tools” folder. Your final directory layout should look like this:
 
 ```
-$ANDROID_SDK_ROOT/cmdline-tools/tools 
+$ANDROID_HOME/cmdline-tools/tools 
 .
 ├── bin
 ├── lib
@@ -40,9 +45,11 @@ $ANDROID_SDK_ROOT/cmdline-tools/tools
 └── source.properties
 ```
 
-`$ANDROID_SDK_ROOT` is any directory here you want to install the files.
+`$ANDROID_HOME` is any directory here you want to install the files.
 
-## Setup Linux OS envoironment
+## 2. Setup Linux OS envoironment
+
+`$ANDROID_HOME` can be `/opt/Android`
 
 Install `adb` tools:
 ```
@@ -50,15 +57,24 @@ sudo apt install adb
 ```
 
 
-## Setup Windows OS envoironment 
-Under construction ...
+## 3. Setup Windows OS envoironment 
 
-## Commands to create an Android Virtual Device (AVD)
+1. [Download the Android SDK Platform Tools ZIP file for Windows](https://dl.google.com/android/repository/platform-tools-latest-windows.zip)
+
+2. Follow the steps listed here: https://dev.to/koscheyscrag/how-to-install-android-emulator-without-installing-android-studio-3lce until step `11.`
+
+3. After step `11.` follow the steps from [Commands to create an Android Virtual Device (AVD)](#commands-to-create-an-android-virtual-device-avd), however:
+   - remove the `./` before each command
+   - change the Linux `/` to the Windows `\`, except on topic [5. Forensics analysis of Android apps](#5-forensics-analysis-of-android-apps)
+  
+
+
+## 4. Commands to create an Android Virtual Device (AVD)
 These commands are the same for both Linux and Windows
 
 ### Install Required Packages
 
-Go to the `$ANDROID_SDK_ROOT/cmdline-tools/tools/bin` folder and run the following command to update repository details:
+Go to the `$ANDROID_HOME/cmdline-tools/tools/bin` folder and run the following command to update repository details:
 ```
 ./sdkmanager
 ```
@@ -88,7 +104,7 @@ For the best performance choose a system-image for the `x86_64` architecture.
 
 
 ### Download and install the selected system-image 
-Download the packages using the same API level number you selected in the step above. Foe example:
+Download the packages using the same API level number you selected in the step above. For example:
 ```
 ./sdkmanager "platforms;android-30" "system-images;android-30;google_apis;x86_64" "build-tools;30.0.3"
 ```
@@ -119,14 +135,13 @@ Edit the file `config.ini` and change this value to `yes`:
 
 ```
 hw.keyboard=yes
-
 ```
 
 You can create as many as AVDs as you want and each AVD / System Image will be treated separately.
 
 ### Run the AVD
 
-Go to `$ANDROID_SDK_ROOT/emulator` and run:
+Go to `$ANDROID_HOME/emulator` and run:
 ```
 ./emulator -avd "AFD2_API_30"
 ```
@@ -147,7 +162,7 @@ $ adb install com.google.android.apps.authenticator2_5.10.apk
     Success
 ```
 
-## Forensics analysis of Android apps
+## 5. Forensics analysis of Android apps
 
 ### Important dirs
 Public data -- data that is available even on non-rooted devices:
