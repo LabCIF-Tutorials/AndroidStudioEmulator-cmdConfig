@@ -151,6 +151,8 @@ Go to `$ANDROID_HOME/emulator` and run:
 $ ./emulator -avd "AFD2_API_30"
 ```
 
+The image bellow depicts the Android settings screen inside the emulator:
+
 ![Printscreen of Android running on the emulator](Android.png "Settings screen on the Android emulator")
 
 ### 4.6 Install apps
