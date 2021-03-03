@@ -45,12 +45,13 @@ $ANDROID_HOME/cmdline-tools/tools
 └── source.properties
 ```
 
-`$ANDROID_HOME` is any directory here you want to install the files.
-For example, on Linux `$ANDROID_HOME` can be `/opt/Android/`Install `adb` tools:
+> **_NOTE:_** `$ANDROID_HOME` is any directory here you want to install the files.
+For example, on Linux `$ANDROID_HOME` can be `/opt/Android/`
+
 
 ## 2. Linux specific set up
 
-
+Install `adb` tools:
 ```
 sudo apt install adb
 ```
@@ -69,7 +70,7 @@ These commands are the same for both Linux and Windows. However, for **Windows**
    - remove the `./` before each command
    - change the Linux `/` to the Windows `\`, except on topic [5. Forensics analysis of Android apps](#5-forensics-analysis-of-android-apps)
 
-**Note:** the `$` represents the command prompt and **must not be typed**
+> **_NOTE:_** The `$` represents the command prompt and **must not be typed**
 
 ### 4.1 Install Required Packages
 
@@ -100,9 +101,9 @@ This [page](https://source.android.com/setup/start/build-numbers#platform-code-n
 
 For the best performance choose a system-image for the `x86_64` architecture.
 
-**Notes:** 
-- If you need root access to the folders inside emulator **don't select** a system-image with `_playstore`
-- A system-image without `_playstore` won't have access to the Google Play Store, therefore to install apps go to a website, like https://www.apkmirror.com/ and download the `APK` files you want to install
+> **_NOTE:_** 
+> We want root access to the folders inside emulator, therefore we **cannot select** a system-image with `_playstore`
+
 
 
 ### 4.3 Download and install the selected system-image 
@@ -137,8 +138,8 @@ Note the path of AVD in the output above. At the same path, you can find a `conf
 hw.keyboard=yes
 ```
 
-**Note** 
-  - If you don't do this change, the Android buttons (home, back, and overview) won't work and you won't be able to operate the Android running in the emulator.
+> **_NOTE:_** 
+> If you don't do this change, the Android buttons (home, back, and overview) won't work and you won't be able to operate the Android running in the emulator.
 
 
 ### 4.5 Run the AVD
