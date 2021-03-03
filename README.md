@@ -151,9 +151,11 @@ Go to `$ANDROID_HOME/emulator` and run:
 $ ./emulator -avd "AFD2_API_30"
 ```
 
-The image below depicts Android's settings screen inside the emulator:
+The image below depicts several Android screens inside the emulator:
 
-![Printscreen of Android running on the emulator](Android.png "Settings screen on the Android emulator")
+![Android home screen](Android-1.png "Android home screen on the emulator")
+![Android settings screen](Android.png "Settings screen on the emulator")
+![Android app list](Android-2.png "Android app list on the emulator")
 
 ### 4.6 Install apps
 A system-image without `_playstore` won't have access to the Google Play Store. So, to install apps you need to go to a website, like https://www.apkmirror.com/ and download the `APK` file of the app you want to install.
@@ -200,7 +202,7 @@ generic_x86_64_arm64:/ $ exit
 ```
 > ***_NOTE_*** Don't copy the files directly to your computer with `adb pull` command, specially if you're using Windows, because you might loose information:
 > - for example, the files `file.txt` and `File.txt` are two different files under Linux (Android uses a Linux kernel) but are the same file under Windows
-> - Windows doesn't recognize Linux links
+> - Windows doesn't recognizes Linux's links
 > - there are some characters that are allowed in Linux file names, but that aren't supported on Windows
 
 
