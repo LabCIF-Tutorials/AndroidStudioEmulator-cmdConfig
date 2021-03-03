@@ -9,8 +9,8 @@ This page explains how to set up and run the Android Studio Emulator **without**
 - [Table of Contents](#table-of-contents)
   - [Credits](#credits)
   - [1. Preperation](#1-preperation)
-  - [2. Setup Linux OS envoironment](#2-setup-linux-os-envoironment)
-  - [3. Setup Windows OS envoironment](#3-setup-windows-os-envoironment)
+  - [2. Linux specific set up](#2-linux-specific-set-up)
+  - [3. Windows specific set up](#3-windows-specific-set-up)
   - [4. Commands to create an Android Virtual Device (AVD)](#4-commands-to-create-an-android-virtual-device-avd)
     - [4.1 Install Required Packages](#41-install-required-packages)
     - [4.2 Select the correct System Image to use](#42-select-the-correct-system-image-to-use)
@@ -46,18 +46,17 @@ $ANDROID_HOME/cmdline-tools/tools
 ```
 
 `$ANDROID_HOME` is any directory here you want to install the files.
+For example, on Linux `$ANDROID_HOME` can be `/opt/Android/`Install `adb` tools:
 
-## 2. Setup Linux OS envoironment
+## 2. Linux specific set up
 
-`$ANDROID_HOME` can be `/opt/Android`
 
-Install `adb` tools:
 ```
 sudo apt install adb
 ```
 
 
-## 3. Setup Windows OS envoironment 
+## 3. Windows specific set up 
 
 1. Follow the steps listed here: https://dev.to/koscheyscrag/how-to-install-android-emulator-without-installing-android-studio-3lce until step `11.`
 
