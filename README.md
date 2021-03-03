@@ -75,19 +75,19 @@ These commands are the same for both Linux and Windows. However, for **Windows**
 
 Go to the `$ANDROID_HOME/cmdline-tools/tools/bin` folder and run the following command to update repository details:
 ```
-./sdkmanager
+$ ./sdkmanager
 ```
 
 Install packages required for the Android emulator to work:
 ```
-./sdkmanager platform-tools emulator
+$ ./sdkmanager platform-tools emulator
 ```
 
 ### 4.2 Select the correct System Image to use
 Next you need to select a system image to load in the Android emulator. 
 To get a list of latest downloadable system images (API version 30), run the command:
 ```
-./sdkmanager --list | grep "system-images;android-30"
+$ ./sdkmanager --list | grep "system-images;android-30"
 
 system-images;android-30;google_apis;x86_64 | 10      | Google APIs Intel x86 Atom_64 System Image | system-images/android-30/google_apis/x86_64/
   system-images;android-30;google_apis;x86                                                 | 9            | Google APIs Intel x86 Atom System Image                             
