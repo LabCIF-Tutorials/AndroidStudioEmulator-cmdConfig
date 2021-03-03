@@ -12,15 +12,15 @@ This page explains how to set up and run the Android Studio Emulator **without**
   - [2. Setup Linux OS envoironment](#2-setup-linux-os-envoironment)
   - [3. Setup Windows OS envoironment](#3-setup-windows-os-envoironment)
   - [4. Commands to create an Android Virtual Device (AVD)](#4-commands-to-create-an-android-virtual-device-avd)
-    - [Install Required Packages](#install-required-packages)
-    - [Select the correct System Image to use](#select-the-correct-system-image-to-use)
-    - [Download and install the selected system-image](#download-and-install-the-selected-system-image)
-    - [Create a new AVD](#create-a-new-avd)
-    - [Run the AVD](#run-the-avd)
-    - [Install apps](#install-apps)
+    - [4.1 Install Required Packages](#41-install-required-packages)
+    - [4.2 Select the correct System Image to use](#42-select-the-correct-system-image-to-use)
+    - [4.3 Download and install the selected system-image](#43-download-and-install-the-selected-system-image)
+    - [4.4 Create a new AVD](#44-create-a-new-avd)
+    - [4.5 Run the AVD](#45-run-the-avd)
+    - [4.6 Install apps](#46-install-apps)
   - [5. Android apps data location](#5-android-apps-data-location)
-    - [Important dirs](#important-dirs)
-    - [Extract data](#extract-data)
+    - [5.1 Important dirs](#51-important-dirs)
+    - [5.2 Extract data](#52-extract-data)
 
 ## Credits 
 This page is heavely based on:
@@ -72,7 +72,7 @@ These commands are the same for both Linux and Windows. However, for **Windows**
 
 **Note:** the `$` represents the command prompt and **must not be typed**
 
-### Install Required Packages
+### 4.1 Install Required Packages
 
 Go to the `$ANDROID_HOME/cmdline-tools/tools/bin` folder and run the following command to update repository details:
 ```
@@ -84,7 +84,7 @@ Install packages required for the Android emulator to work:
 ./sdkmanager platform-tools emulator
 ```
 
-### Select the correct System Image to use
+### 4.2 Select the correct System Image to use
 Next you need to select a system image to load in the Android emulator. 
 To get a list of latest downloadable system images (API version 30), run the command:
 ```
@@ -106,13 +106,13 @@ For the best performance choose a system-image for the `x86_64` architecture.
 - A system-image without `_playstore` won't have access to the Google Play Store, therefore to install apps go to a website, like https://www.apkmirror.com/ and download the `APK` files you want to install
 
 
-### Download and install the selected system-image 
+### 4.3 Download and install the selected system-image 
 Download the packages using the same API level number you selected in the step above. For example:
 ```
-./sdkmanager "platforms;android-30" "system-images;android-30;google_apis;x86_64" "build-tools;30.0.3"
+$ ./sdkmanager "platforms;android-30" "system-images;android-30;google_apis;x86_64" "build-tools;30.0.3"
 ```
 
-### Create a new AVD
+### 4.4 Create a new AVD
 
 “Android Virtual Device” (AVD) is a set of configuration parameters that defines values for a virtual device that will emulate a real Android hardware device.
 
@@ -142,14 +142,14 @@ hw.keyboard=yes
   - If you don't do this change, the Android buttons (home, back, and overview) won't work and you won't be able to operate the Android running in the emulator.
 
 
-### Run the AVD
+### 4.5 Run the AVD
 
 Go to `$ANDROID_HOME/emulator` and run:
 ```
 $ ./emulator -avd "AFD2_API_30"
 ```
 
-### Install apps
+### 4.6 Install apps
 A system-image without `_playstore` won't have access to the Google Play Store. So, to install apps you need to go to a website, like https://www.apkmirror.com/ and download the `APK` file of the app you want to install.
 
 Use the `adb` commands to connect to the emulator:
@@ -167,7 +167,7 @@ Success
 
 ## 5. Android apps data location
 
-### Important dirs
+### 5.1 Important dirs
 Public data -- data that is available even on non-rooted devices:
 ```
 $ adb shell
@@ -181,7 +181,7 @@ generic_x86_64_arm64:/ $ su
 generic_x86_64_arm64:/ # cd /data/data/<app dir>
 ```
 
-### Extract data
+### 5.2 Extract data
 
 1. Connect to the Android emulator and follow the steps bellow to create a `tgz` file with the contents of the private directory af an app:
 ```
