@@ -13,7 +13,7 @@ This page explains how to set up and run the Android Studio Emulator **without**
   - [3. Windows specific set up](#3-windows-specific-set-up)
   - [4. Commands to create an Android Virtual Device (AVD)](#4-commands-to-create-an-android-virtual-device-avd)
     - [4.1 Install Required Packages](#41-install-required-packages)
-    - [4.2 Select the correct System Image to use](#42-select-the-correct-system-image-to-use)
+    - [4.2 Select the correct system-image to use](#42-select-the-correct-system-image-to-use)
     - [4.3 Download and install the selected system-image](#43-download-and-install-the-selected-system-image)
     - [4.4 Create a new AVD](#44-create-a-new-avd)
     - [4.5 Run the AVD](#45-run-the-avd)
@@ -32,7 +32,7 @@ Therefore, credits should go to its authors.
 
 ## 1. Preperation
 
-1. Download the latest version of [Android Command Line Tools](https://developer.android.com/studio#downloads) for your Operating System (OS) (scroll down to the command line section).
+1. Download the latest version of [Android Command Line Tools](https://developer.android.com/studio#downloads) for your Operating System (OS), scroll down to the command line section.
    
 2. Extract the downloaded archive and make a new folder named “tools” inside “cmdline-tools” directory. Copy and paste all files from “cmdline-tools” folder to “tools” folder. Your final directory layout should look like this:
 
@@ -74,7 +74,7 @@ These commands are the same for both Linux and Windows. However, for **Windows**
 
 ### 4.1 Install Required Packages
 
-Go to the `$ANDROID_HOME/cmdline-tools/tools/bin` folder and run the following command to update repository details:
+Go to the `$ANDROID_HOME/cmdline-tools/tools/bin` folder and run the following command to update the repository:
 ```
 $ ./sdkmanager
 ```
@@ -84,9 +84,9 @@ Install packages required for the Android emulator to work:
 $ ./sdkmanager platform-tools emulator
 ```
 
-### 4.2 Select the correct System Image to use
-Next you need to select a system image to load in the Android emulator. 
-To get a list of latest downloadable system images (API version 30), run the command:
+### 4.2 Select the correct system-image to use
+Next we need to select a system image to load in the Android emulator. 
+To get a list of latest downloadable system images (this [page](https://source.android.com/setup/start/build-numbers#platform-code-names-versions-api-levels-and-ndk-releases) has a list of all API numbers, at the time of this writting API version 30 is the latest), run the command:
 ```
 $ ./sdkmanager --list | grep "system-images;android-30"
 
@@ -97,12 +97,10 @@ system-images;android-30;google_apis;x86_64 | 10      | Google APIs Intel x86 At
   system-images;android-30;google_apis_playstore;x86_64                                    | 10           | Google Play Intel x86 Atom_64 System Image
 ```
 
-This [page](https://source.android.com/setup/start/build-numbers#platform-code-names-versions-api-levels-and-ndk-releases) has a list of all API numbers.
-
 For the best performance choose a system-image for the `x86_64` architecture.
 
 > **_NOTE:_** 
-> We want root access to the folders inside emulator, therefore we **cannot select** a system-image with `_playstore`
+> We want root access to the folders inside the emulator, therefore we **cannot select** a system-image with `_playstore`
 
 
 
@@ -114,12 +112,16 @@ $ ./sdkmanager "platforms;android-30" "system-images;android-30;google_apis;x86_
 
 ### 4.4 Create a new AVD
 
-“Android Virtual Device” (AVD) is a set of configuration parameters that defines values for a virtual device that will emulate a real Android hardware device.
+"Android Virtual Device" (AVD) is a set of configuration parameters that defines values for a virtual device that will emulate a real Android hardware device.
 
-o create a new AVD, you need to use the system image you downloaded in the step above. Run the following command to create a new AVD, for example:
+To create a new AVD, you need to use the system image we downloaded in the step above. Run the following command:
 ```
 $ ./avdmanager create avd -n "AFD2_API_30" -k "system-images;android-30;google_apis;x86_64"
 ```
+
+> **_NOTE:_** 
+> "AFD2_API_30" is the name we chose for our AVD
+
 
 Confirm that the AVD has been successfully created using the command below:
 ```
