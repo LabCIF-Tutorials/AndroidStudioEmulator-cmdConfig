@@ -180,7 +180,7 @@ $ adb shell
 generic_x86_64_arm64:/ $ cd /sdcard/Android/data/<app dir>
 ```
 
-Private data -- data that is only available withh root (notice the change from `$` to `#` in the prompt):
+Private data -- data that is only available with root (notice the change from `$` to `#` in the prompt):
 ```
 $ adb shell
 generic_x86_64_arm64:/ $ su
@@ -198,6 +198,10 @@ generic_x86_64_arm64:/ # tar -cvzf /sdcard/Download/<compressed filename>.tgz <a
 generic_x86_64_arm64:/ # exit
 generic_x86_64_arm64:/ $ exit
 ```
+> ***_NOTE_*** Don't copy the files directly to your computer with `adb pull` command, specially if you're using Windows, because you might loose information:
+> - for example, the files `file.txt` and `File.txt` are two different files under Linux (Android uses a Linux kernel) but are the same file under Windows
+> - Windows doesn't recognize Linux links
+
 
 2. Copy the `tgz` file into your computer for analysis
 ```
