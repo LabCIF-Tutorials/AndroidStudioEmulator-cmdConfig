@@ -18,6 +18,7 @@ This page explains how to set up and run the Android Studio Emulator **without**
     - [4.4 Create a new AVD](#44-create-a-new-avd)
     - [4.5 Run the AVD](#45-run-the-avd)
     - [4.6 Install apps](#46-install-apps)
+    - [4.7 Update emulator and SDK tools](#47-update-emulator-and-sdk-tools)
   - [5. Android apps data location](#5-android-apps-data-location)
     - [5.1 Important dirs](#51-important-dirs)
     - [5.2 Extract data](#52-extract-data)
@@ -146,16 +147,17 @@ hw.keyboard=yes
 
 ### 4.5 Run the AVD
 
-Go to `$ANDROID_HOME/emulator` and run:
+To run an AVD do the following commands:
 ```
+$ cd /$ANDROID_HOME/emulator/
 $ ./emulator -avd "AFD2_API_30"
 ```
 
-The image below depicts several Android screens inside the emulator:
+Below are several print screens of Android running inside the emulator:
 
 ![Android home screen](Android-1.png "Android home screen on the emulator")
 ![Android settings screen](Android.png "Settings screen on the emulator")
-![Android app list](Android-2.png "Android app list on the emulator")
+<!-- ![Android app list](Android-2.png "Android app list on the emulator") -->
 
 ### 4.6 Install apps
 A system-image without `_playstore` won't have access to the Google Play Store. So, to install apps you need to go to a website, like https://www.apkmirror.com/ and download the `APK` file of the app you want to install.
@@ -172,6 +174,23 @@ Then, inside the directory where you downloaded the APK file use `adb install <f
 $ adb install com.google.android.apps.authenticator2_5.10.apk
 Success
 ```
+
+### 4.7 Update emulator and SDK tools
+From time to time you might need to update the installed tools. 
+To update de emulator do the following commands:
+```
+$ cd /$ANDROID_HOME/tools/
+$ ./android update sdk --no-ui
+```
+
+To update the SDK do the following commands:
+```
+$ cd /$ANDROID_HOME/cmdline-tools/tools/bin
+$ ./sdkmanager --update
+```
+
+> **_NOTE_**
+> The `android` command seems to be deprecated in favor of `sdkmanager`, however, some functionalities weren't ported yet into the new tool.
 
 ## 5. Android apps data location
 
