@@ -20,7 +20,7 @@ This page explains how to set up and run the Android Studio Emulator **without**
     - [4.6 Install apps](#46-install-apps)
     - [4.7 Update emulator and SDK tools](#47-update-emulator-and-sdk-tools)
   - [5. Android apps data location](#5-android-apps-data-location)
-    - [5.1 Important dirs](#51-important-dirs)
+    - [5.1 Important directories](#51-important-directories)
     - [5.2 Extract data](#52-extract-data)
 
 ## Credits 
@@ -194,14 +194,36 @@ $ ./sdkmanager --update
 
 ## 5. Android apps data location
 
-### 5.1 Important dirs
-Public data -- data that is available even on non-rooted devices:
+The instructions below show how to acquire data from apps running inside the emulator to later perform a digital forensics analysis.
+
+### 5.1 Important directories
+
+**Public data** -- data that is available even on non-rooted devices:
+```
+$ adb shell
+generic_x86_64_arm64:/ $ cd /storage/emulated/0/Android/data/<app dir>
+```
+
+However, there are 4 links that can be used as alternative paths to reach the public data dir:
+
+```
+/
+├── sdcard/ → /storage/self/primary/
+├── mnt/
+│   ├── sdcard/ → /storage/self/primary/
+│   └── user/0/primary/ → /storage/emulated/0/
+└── storage/
+    ├── self/primary/ → /mnt/user/0/primary/
+    └── emulated/0/Android/data/
+```
+
+So, you can use also a shorter path:
 ```
 $ adb shell
 generic_x86_64_arm64:/ $ cd /sdcard/Android/data/<app dir>
 ```
 
-Private data -- data that is only available with root (notice the change from `$` to `#` in the prompt):
+**Private data** -- data that is only available with root (notice the change from `$` to `#` in the prompt):
 ```
 $ adb shell
 generic_x86_64_arm64:/ $ su
