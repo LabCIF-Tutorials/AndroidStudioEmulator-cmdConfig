@@ -114,13 +114,13 @@ $ ./sdkmanager "platforms;android-30" "system-images;android-30;google_apis;x86_
 
 "Android Virtual Device" (AVD) is a set of configuration parameters that defines values for a virtual device that will emulate a real Android hardware device.
 
-To create a new AVD, you need to use the system image we downloaded in the step above. Run the following command:
+To create a new AVD, we need to use the system image we downloaded in the step above. Run the following command:
 ```
 $ ./avdmanager create avd -n "AFD2_API_30" -k "system-images;android-30;google_apis;x86_64"
 ```
 
 > **_NOTE:_** 
-> "AFD2_API_30" is the name we chose for our AVD
+>  "AFD2_API_30" is the name we have chosen for our AVD
 
 
 Confirm that the AVD has been successfully created using the command below:
@@ -134,7 +134,7 @@ Available Android Virtual Devices:
   Sdcard: 512 MB
 ```
 
-Note the path of AVD in the output above. At the same path, you can find a `config.ini` file that can be used to change configuration parameters of the AVD. Edit the file `config.ini` and change the value to `yes`:
+Note the path of AVD in the output above. At the same path, we can find a `config.ini` file that can be used to change configuration parameters of the AVD. Edit the file `config.ini` and change the value to `yes`:
 
 ```
 hw.keyboard=yes
@@ -201,4 +201,4 @@ $ adb pull /sdcard/Download/<compressed filename>.tgz
 /sdcard/Download/<compressed filename>.tgz: 1 file pulled. 0.1 MB/s (180 bytes in 0.010s)
 ```
 
-3. Decompress the file with `7z` and start your analysis
+3. Decompress the file with `7z`, or other tool that supports `.tgz` files, and start the analysis
