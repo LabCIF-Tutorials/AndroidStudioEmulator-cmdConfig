@@ -68,6 +68,7 @@ sudo apt install adb
 ## 4. Commands to create an Android Virtual Device (AVD)
 These commands are the same for both Linux and Windows, however:
    - remove the `./` before each command
+   - the `$` represents the command prompt and **must not be typed**
    - change the Linux `/` to the Windows `\`, except on topic [5. Forensics analysis of Android apps](#5-forensics-analysis-of-android-apps)
 
 ### Install Required Packages
@@ -101,7 +102,7 @@ For the best performance choose a system-image for the `x86_64` architecture.
 
 **Notes:** 
 - If you need root access to the folders inside emulator **don't select** a system-image with `_playstore`
-- A system-image without `_playstore` won't have access to the Google Play Store, to install apps go to a website, like https://www.apkmirror.com/ and download the `APK` files you want to install
+- A system-image without `_playstore` won't have access to the Google Play Store, therefore to install apps go to a website, like https://www.apkmirror.com/ and download the `APK` files you want to install
 
 
 ### Download and install the selected system-image 
@@ -121,7 +122,7 @@ $ ./avdmanager create avd -n "AFD2_API_30" -k "system-images;android-30;google_a
 
 Confirm that the AVD has been successfully created using the command below:
 ```
-./avdmanager list avd
+$ ./avdmanager list avd
 Available Android Virtual Devices:
     Name: AFD2_API_30
     Path: /home/user/.android/avd/AFD2_API_30.avd
@@ -144,7 +145,7 @@ hw.keyboard=yes
 
 Go to `$ANDROID_HOME/emulator` and run:
 ```
-./emulator -avd "AFD2_API_30"
+$ ./emulator -avd "AFD2_API_30"
 ```
 
 ### Install apps
