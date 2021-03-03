@@ -18,7 +18,7 @@ This page explains how to set up and run the Android Studio Emulator **without**
     - [Create a new AVD](#create-a-new-avd)
     - [Run the AVD](#run-the-avd)
     - [Install apps](#install-apps)
-  - [5. Forensics analysis of Android apps](#5-forensics-analysis-of-android-apps)
+  - [5. Android apps data location](#5-android-apps-data-location)
     - [Important dirs](#important-dirs)
     - [Extract data](#extract-data)
 
@@ -115,7 +115,7 @@ Download the packages using the same API level number you selected in the step a
 
 o create a new AVD, you need to use the system image you downloaded in the step above. Run the following command to create a new AVD, for example:
 ```
-./avdmanager create avd -n "AFD2_API_30" -k "system-images;android-30;google_apis;x86_64"
+$ ./avdmanager create avd -n "AFD2_API_30" -k "system-images;android-30;google_apis;x86_64"
 ```
 
 Confirm that the AVD has been successfully created using the command below:
@@ -129,15 +129,15 @@ Available Android Virtual Devices:
   Sdcard: 512 MB
 ```
 
-Note the path of AVD in the output above. At the same path, you can find a `config.ini` file that can be used to change configuration parameters of the AVD.
-
-Edit the file `config.ini` and change this value to `yes`:
+Note the path of AVD in the output above. At the same path, you can find a `config.ini` file that can be used to change configuration parameters of the AVD. Edit the file `config.ini` and change the value to `yes`:
 
 ```
 hw.keyboard=yes
 ```
 
-You can create as many as AVDs as you want and each AVD / System Image will be treated separately.
+**Note** 
+  - If you don't do this change, the Android buttons (home, back, and overview) won't work and you won't be able to operate the Android running in the emulator.
+
 
 ### Run the AVD
 
@@ -152,28 +152,28 @@ A system-image without `_playstore` won't have access to the Google Play Store. 
 Use the `adb` commands to connect to the emulator:
 ```
 $ adb devices
-    List of devices attached
-    emulator-5554   device
+List of devices attached
+emulator-5554   device
 ```
 
 Then, inside the directory where you downloaded the APK file use `adb install <file>.apk`, for example:
 ```
 $ adb install com.google.android.apps.authenticator2_5.10.apk
-    Success
+Success
 ```
 
-## 5. Forensics analysis of Android apps
+## 5. Android apps data location
 
 ### Important dirs
 Public data -- data that is available even on non-rooted devices:
 ```
-adb shell
+$ adb shell
 generic_x86_64_arm64:/ $ cd /sdcard/Android/data/<app dir>
 ```
 
 Private data -- data that is only available withh root (notice the change from `$` to `#` in the prompt):
 ```
-adb shell
+$ adb shell
 generic_x86_64_arm64:/ $ su
 generic_x86_64_arm64:/ # cd /data/data/<app dir>
 ```
