@@ -66,10 +66,11 @@ sudo apt install adb
 
 
 ## 4. Commands to create an Android Virtual Device (AVD)
-These commands are the same for both Linux and Windows, however:
+These commands are the same for both Linux and Windows. However, for **Windows**
    - remove the `./` before each command
-   - the `$` represents the command prompt and **must not be typed**
    - change the Linux `/` to the Windows `\`, except on topic [5. Forensics analysis of Android apps](#5-forensics-analysis-of-android-apps)
+
+**Note:** the `$` represents the command prompt and **must not be typed**
 
 ### Install Required Packages
 
