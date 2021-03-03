@@ -151,6 +151,8 @@ Go to `$ANDROID_HOME/emulator` and run:
 $ ./emulator -avd "AFD2_API_30"
 ```
 
+![Printscreen of Android running on the emulator](Android.png "Settings screen on the Android emulator")
+
 ### 4.6 Install apps
 A system-image without `_playstore` won't have access to the Google Play Store. So, to install apps you need to go to a website, like https://www.apkmirror.com/ and download the `APK` file of the app you want to install.
 
