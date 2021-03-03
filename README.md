@@ -61,14 +61,14 @@ sudo apt install adb
 
 1. Follow the steps listed here: https://dev.to/koscheyscrag/how-to-install-android-emulator-without-installing-android-studio-3lce until step `11.`
 
-2. After step `11.` follow the steps from [Commands to create an Android Virtual Device (AVD)](#commands-to-create-an-android-virtual-device-avd), however:
-   - remove the `./` before each command
-   - change the Linux `/` to the Windows `\`, except on topic [5. Forensics analysis of Android apps](#5-forensics-analysis-of-android-apps)
+2. After step `11.` follow the steps from [4. Commands to create an Android Virtual Device (AVD)](#commands-to-create-an-android-virtual-device-avd)
   
 
 
 ## 4. Commands to create an Android Virtual Device (AVD)
-These commands are the same for both Linux and Windows
+These commands are the same for both Linux and Windows, however:
+   - remove the `./` before each command
+   - change the Linux `/` to the Windows `\`, except on topic [5. Forensics analysis of Android apps](#5-forensics-analysis-of-android-apps)
 
 ### Install Required Packages
 
