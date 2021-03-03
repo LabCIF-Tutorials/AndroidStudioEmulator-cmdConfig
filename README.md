@@ -94,6 +94,9 @@ system-images;android-30;google_apis;x86_64 | 10      | Google APIs Intel x86 At
   system-images;android-30;google_apis_playstore;x86                                       | 9            | Google Play Intel x86 Atom System Image                             
   system-images;android-30;google_apis_playstore;x86_64                                    | 10           | Google Play Intel x86 Atom_64 System Image
 ```
+
+This [page](https://source.android.com/setup/start/build-numbers#platform-code-names-versions-api-levels-and-ndk-releases) has a list of all API numbers.
+
 For the best performance choose a system-image for the `x86_64` architecture.
 
 **Notes:** 
