@@ -90,18 +90,17 @@ To get a list of latest downloadable system images (this [page](https://source.a
 ```
 $ ./sdkmanager --list | grep "system-images;android-30"
 
-system-images;android-30;google_apis;x86_64 | 10      | Google APIs Intel x86 Atom_64 System Image | system-images/android-30/google_apis/x86_64/
-  system-images;android-30;google_apis;x86                                                 | 9            | Google APIs Intel x86 Atom System Image                             
-  system-images;android-30;google_apis;x86_64                                              | 10           | Google APIs Intel x86 Atom_64 System Image                          
-  system-images;android-30;google_apis_playstore;x86                                       | 9            | Google Play Intel x86 Atom System Image                             
-  system-images;android-30;google_apis_playstore;x86_64                                    | 10           | Google Play Intel x86 Atom_64 System Image
+system-images;android-30;google_apis;x86_64              | 10   | Google APIs Intel x86 Atom_64 System Image | system-images/android-30/google_apis/x86_64/
+system-images;android-30;google_apis;x86                 | 9    | Google APIs Intel x86 Atom System Image                             
+system-images;android-30;google_apis;x86_64              | 10   | Google APIs Intel x86 Atom_64 System Image                          
+system-images;android-30;google_apis_playstore;x86       | 9    | Google Play Intel x86 Atom System Image                             
+system-images;android-30;google_apis_playstore;x86_64    | 10   | Google Play Intel x86 Atom_64 System Image
 ```
 
 For the best performance choose a system-image for the `x86_64` architecture.
 
 > **_NOTE:_** 
 > We want root access to the folders inside the emulator, therefore we **cannot select** a system-image with `_playstore`
-
 
 
 ### 4.3 Download and install the selected system-image 
