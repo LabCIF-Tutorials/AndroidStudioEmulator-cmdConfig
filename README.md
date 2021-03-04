@@ -68,7 +68,7 @@ sudo apt install adb kvmtool
 ## 4. Commands to create an Android Virtual Device (AVD)
 These commands are the same for both Linux and Windows. However, for **Windows**
    - remove the `./` before each command
-   - change the Linux `/` to the Windows `\`, except on topic [5. Forensics analysis of Android apps](#5-forensics-analysis-of-android-apps)
+   - change the Linux `/` to the Windows `\`, except on topic [5. Android apps and its files](#5-android-apps-and-its-files)
 
 > **_NOTE:_** The `$` represents the command prompt and **must not be typed**
 
