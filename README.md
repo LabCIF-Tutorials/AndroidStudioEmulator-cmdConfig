@@ -17,11 +17,11 @@ This page explains how to set up and run the Android Studio Emulator **without**
     - [4.3 Download and install the selected system-image](#43-download-and-install-the-selected-system-image)
     - [4.4 Create a new AVD](#44-create-a-new-avd)
     - [4.5 Run the AVD](#45-run-the-avd)
-    - [4.6 Install apps](#46-install-apps)
-    - [4.7 Update emulator and SDK tools](#47-update-emulator-and-sdk-tools)
-  - [5. Android apps data location](#5-android-apps-data-location)
-    - [5.1 Important directories](#51-important-directories)
-    - [5.2 Extract data](#52-extract-data)
+    - [4.6 Update emulator and SDK tools](#46-update-emulator-and-sdk-tools)
+  - [5. Android apps and its files](#5-android-apps-and-its-files)
+    - [5.1 Install apps](#51-install-apps)
+    - [5.2 Important directories](#52-important-directories)
+    - [5.3 Extract data](#53-extract-data)
 
 ## Credits 
 This page is heavely based on:
@@ -38,15 +38,14 @@ Therefore, credits should go to its authors.
 2. Extract the downloaded archive and make a new folder named “tools” inside “cmdline-tools” directory. Copy and paste all files from “cmdline-tools” folder to “tools” folder. Your final directory layout should look like this:
 
 ```
-$ANDROID_HOME/cmdline-tools/tools 
-.
-├── bin
-├── lib
+$ANDROID_HOME/cmdline-tools/tools/
+├── bin/
+├── lib/
 ├── NOTICE.txt
 └── source.properties
 ```
 
-> **_NOTE:_** `$ANDROID_HOME` is any directory here you want to install the files.
+> **_NOTE:_** `$ANDROID_HOME` is any directory where you want to install the files.
 For example, on Linux `$ANDROID_HOME` can be `/opt/Android/`
 
 
@@ -54,7 +53,7 @@ For example, on Linux `$ANDROID_HOME` can be `/opt/Android/`
 
 Install `adb` tools:
 ```
-sudo apt install adb
+sudo apt install adb kvmtool
 ```
 
 
@@ -159,23 +158,8 @@ Android home screen        |  Settings screen
 ![Android home screen](Android-1.png "Android home screen on the emulator")  | ![Android settings screen](Android.png "Settings screen on the emulator")
 <!-- ![Android app list](Android-2.png "Android app list on the emulator") -->
 
-### 4.6 Install apps
-A system-image without `_playstore` won't have access to the Google Play Store. So, to install apps you need to go to a website, like https://www.apkmirror.com/ and download the `APK` file of the app you want to install.
 
-Use the `adb` commands to connect to the emulator:
-```
-$ adb devices
-List of devices attached
-emulator-5554   device
-```
-
-Then, inside the directory where you downloaded the APK file use `adb install <file>.apk`, for example:
-```
-$ adb install com.google.android.apps.authenticator2_5.10.apk
-Success
-```
-
-### 4.7 Update emulator and SDK tools
+### 4.6 Update emulator and SDK tools
 From time to time you might need to update the installed tools. 
 To update de emulator do the following commands:
 ```
@@ -192,11 +176,27 @@ $ ./sdkmanager --update
 > **_NOTE_**
 > The `android` command seems to be deprecated in favor of `sdkmanager`, however, some functionalities weren't ported yet into the new tool.
 
-## 5. Android apps data location
+## 5. Android apps and its files
+This sections shows how to install apps inside the Android emulator and also how to get the files produced by those apps to later perform a digital forensics analysis.
 
-The instructions below show how to acquire data from apps running inside the emulator to later perform a digital forensics analysis.
+### 5.1 Install apps
 
-### 5.1 Important directories
+A system-image without `_playstore` won't have access to the Google Play Store. So, to install apps you need to go to a website, like https://www.apkmirror.com/ and download the `APK` file of the app you want to install.
+
+Use the `adb` commands to connect to the emulator:
+```
+$ adb devices
+List of devices attached
+emulator-5554   device
+```
+
+Then, inside the directory where you downloaded the APK file use `adb install <file>.apk`, for example:
+```
+$ adb install com.google.android.apps.authenticator2_5.10.apk
+Success
+```
+
+### 5.2 Important directories
 
 **Public data** -- data that is available even on non-rooted devices:
 ```
@@ -204,7 +204,7 @@ $ adb shell
 generic_x86_64_arm64:/ $ cd /storage/emulated/0/Android/data/<app dir>
 ```
 
-However, there are 4 links that can be used as alternative paths to reach the public data dir:
+However, there are 4 links that can be used as alternative paths to `/storage/emulated/0/` and, therefore, to reach the public data dir:
 
 ```
 /
@@ -230,7 +230,7 @@ generic_x86_64_arm64:/ $ su
 generic_x86_64_arm64:/ # cd /data/data/<app dir>
 ```
 
-### 5.2 Extract data
+### 5.3 Extract data
 
 1. Connect to the Android emulator and follow the steps bellow to create a `tgz` file with the contents of the private directory af an app:
 ```
