@@ -18,10 +18,6 @@ This page explains how to set up and run the Android Studio Emulator **without**
     - [4.4 Create a new AVD](#44-create-a-new-avd)
     - [4.5 Run the AVD](#45-run-the-avd)
     - [4.6 Update emulator and SDK tools](#46-update-emulator-and-sdk-tools)
-  - [5. Android apps and its files](#5-android-apps-and-its-files)
-    - [5.1 Install apps](#51-install-apps)
-    - [5.2 Important directories](#52-important-directories)
-    - [5.3 Extract data](#53-extract-data)
 
 ## Credits 
 This page is heavely based on:
@@ -45,7 +41,9 @@ $ANDROID_HOME/cmdline-tools/tools/
 └── source.properties
 ```
 
-> **_NOTE:_** `$ANDROID_HOME` is any directory where you want to install the files.
+> **_NOTE:_** 
+> 
+> `$ANDROID_HOME` is any directory where you want to install the files.
 For example, on Linux `$ANDROID_HOME` can be `/opt/Android/`
 
 
@@ -53,7 +51,7 @@ For example, on Linux `$ANDROID_HOME` can be `/opt/Android/`
 
 Install `adb` tools:
 ```
-sudo apt install adb kvmtool
+sudo apt install adb
 ```
 
 
@@ -70,7 +68,9 @@ These commands are the same for both Linux and Windows. However, for **Windows**
    - remove the `./` before each command
    - change the Linux `/` to the Windows `\`, except on topic [5. Android apps and its files](#5-android-apps-and-its-files)
 
-> **_NOTE:_** The `$` represents the command prompt and **must not be typed**
+> **_NOTE:_** 
+> 
+> The `$` represents the command prompt and **must not be typed**
 
 ### 4.1 Install Required Packages
 
@@ -100,6 +100,7 @@ system-images;android-30;google_apis_playstore;x86_64    | 10   | Google Play In
 For the best performance choose a system-image for the `x86_64` architecture.
 
 > **_NOTE:_** 
+> 
 > We want root access to the folders inside the emulator, therefore we **cannot select** a system-image with `_playstore`
 
 
@@ -119,6 +120,7 @@ $ ./avdmanager create avd -n "AFD2_API_30" -k "system-images;android-30;google_a
 ```
 
 > **_NOTE:_** 
+> 
 >  "AFD2_API_30" is the name we have chosen for our AVD
 
 
@@ -147,9 +149,15 @@ hw.keyboard=yes
 
 To run an AVD do the following commands:
 ```
-$ cd /$ANDROID_HOME/emulator/
+$ cd $ANDROID_HOME/emulator/
 $ ./emulator -avd "AFD2_API_30"
 ```
+> **_NOTE_**
+>
+> You might need to add your username to the `kvm` group:
+> ```
+> sudo gpasswd -a $USER kvm
+> ```
 
 Below are several print screens of Android running inside the emulator.
 Android home screen        |  Settings screen
@@ -160,19 +168,19 @@ Android home screen        |  Settings screen
 
 ### 4.6 Update emulator and SDK tools
 From time to time you might need to update the installed tools. 
-To update de emulator do the following commands:
+<!-- To update de emulator do the following commands:
 ```
-$ cd /$ANDROID_HOME/tools/
-$ ./android update sdk --no-ui
-```
-
+$ cd $ANDROID_HOME/tools/
+$ ./android update sdk 
+``` -->
 To update the SDK do the following commands:
 ```
-$ cd /$ANDROID_HOME/cmdline-tools/tools/bin
+$ cd $ANDROID_HOME/cmdline-tools/tools/bin
 $ ./sdkmanager --update
 ```
 
 > **_NOTE_**
+>
 > The `android` command seems to be deprecated in favor of `sdkmanager`, however, some functionalities weren't ported yet into the new tool.
 
 ## 5. Android apps and its files
