@@ -1,29 +1,27 @@
-# Android4QEMU
+# Android4QEMU <!-- omit in toc -->
 To run Android on our PCs there are several options, being [Android Studio](https://developer.android.com/studio) one of them. However, Android Studio was created for Android developers and has a complex GUI with lots of features. Therefore, consumes lots of resources even without running the embedded emulator. To test apps and the files they generate, we don't need the Android Studio GUI.
 
 This page explains how to set up and run the Android Studio Emulator **without** the Android Studio GUI.
 
 
-# Table of Contents
-- [Android4QEMU](#android4qemu)
-- [Table of Contents](#table-of-contents)
-  - [Credits](#credits)
-  - [1. Preperation](#1-preperation)
-  - [2. Linux specific set up](#2-linux-specific-set-up)
-  - [3. Windows specific set up](#3-windows-specific-set-up)
-  - [4. Commands to create an Android Virtual Device (AVD)](#4-commands-to-create-an-android-virtual-device-avd)
-    - [4.1 Install Required Packages](#41-install-required-packages)
-    - [4.2 Select the correct system-image to use](#42-select-the-correct-system-image-to-use)
-    - [4.3 Download and install the selected system-image](#43-download-and-install-the-selected-system-image)
-    - [4.4 Create a new AVD](#44-create-a-new-avd)
-    - [4.5 Run the AVD](#45-run-the-avd)
-    - [4.6 Update emulator and SDK tools](#46-update-emulator-and-sdk-tools)
+# Table of Contents <!-- omit in toc -->
+- [Credits](#credits)
+- [1. Preperation](#1-preperation)
+- [2. Linux specific set up](#2-linux-specific-set-up)
+- [3. Windows specific set up](#3-windows-specific-set-up)
+- [4. Commands to create an Android Virtual Device (AVD)](#4-commands-to-create-an-android-virtual-device-avd)
+  - [4.1 Install Required Packages](#41-install-required-packages)
+  - [4.2 Select the correct system-image to use](#42-select-the-correct-system-image-to-use)
+  - [4.3 Download and install the selected system-image](#43-download-and-install-the-selected-system-image)
+  - [4.4 Create a new AVD](#44-create-a-new-avd)
+  - [4.5 Run the AVD](#45-run-the-avd)
+  - [4.6 Update emulator and SDK tools](#46-update-emulator-and-sdk-tools)
 
 ## Credits 
 This page is heavely based on:
 - https://linuxhint.com/setup-android-emulator-without-installing-android-studio-in-linux/
 
-Therefore, credits should go to its authors.
+Therefore, credits should go to its author.
 
 
 
