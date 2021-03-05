@@ -16,6 +16,12 @@ This page explains how to set up and run the Android Studio Emulator **without**
   - [4.4 Create a new AVD](#44-create-a-new-avd)
   - [4.5 Run the AVD](#45-run-the-avd)
   - [4.6 Update emulator and SDK tools](#46-update-emulator-and-sdk-tools)
+- [5. Android apps and its files](#5-android-apps-and-its-files)
+  - [5.1 Install apps](#51-install-apps)
+  - [5.2 Important directories](#52-important-directories)
+  - [5.3 Extract data](#53-extract-data)
+
+
 
 ## Credits 
 This page is heavely based on:
@@ -166,11 +172,6 @@ Android home screen        |  Settings screen
 
 ### 4.6 Update emulator and SDK tools
 From time to time you might need to update the installed tools. 
-<!-- To update de emulator do the following commands:
-```
-$ cd $ANDROID_HOME/tools/
-$ ./android update sdk 
-``` -->
 To update the SDK do the following commands:
 ```
 $ cd $ANDROID_HOME/cmdline-tools/tools/bin
@@ -181,7 +182,7 @@ $ ./sdkmanager --update
 >
 > The `android` command seems to be deprecated in favor of `sdkmanager`, however, some functionalities weren't ported yet into the new tool.
 
-## 5. Android apps and its files
+## 5. Android apps and its files 
 This sections shows how to install apps inside the Android emulator and also how to get the files produced by those apps to later perform a digital forensics analysis.
 
 ### 5.1 Install apps
