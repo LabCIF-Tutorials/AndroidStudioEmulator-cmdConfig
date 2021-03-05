@@ -162,6 +162,7 @@ $ ./emulator -avd "AFD2_API_30"
 > ```
 > sudo gpasswd -a $USER kvm
 > ```
+> After this command you need to logout/login for the changes to take effect.
 
 Below are several print screens of Android running inside the emulator.
 Android home screen        |  Settings screen
