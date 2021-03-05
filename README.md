@@ -258,6 +258,6 @@ generic_x86_64_arm64:/ $ exit
 $ adb pull /sdcard/Download/<compressed filename>.tgz
 /sdcard/Download/<compressed filename>.tgz: 1 file pulled. 0.1 MB/s (180 bytes in 0.010s)
 ```
-3. If you're using Windows set up first [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install-win10), or a Linux VM, and copy the `<compressed filename>.tgz` inside the WSL/VM to avoid losing data during the decompression (see the note above)
+3. If you're using Windows set up first a Linux VM, and copy the `<compressed filename>.tgz` inside the VM to avoid losing data during the decompression (see the note above)
 
 4. Decompress the file with `7z`, or other tool that supports `.tgz` files, and start the analysis
