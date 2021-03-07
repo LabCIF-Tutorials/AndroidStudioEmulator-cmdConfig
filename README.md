@@ -38,13 +38,14 @@ Therefore, credits should go to its author.
 
 2. Extract the downloaded archive and make a new folder named “tools” inside “cmdline-tools” directory. Copy and paste all files from “cmdline-tools” folder to “tools” folder. Your final directory layout should look like this:
 
-```text
-$ANDROID_HOME/cmdline-tools/
-              └── tools/
-                  ├── bin/
-                  ├── lib/
-                  ├── NOTICE.txt
-                  └── source.properties
+```console
+user@linux:ANDROID_HOME$ tree -F -L 2 cmdline-tools
+cmdline-tools/
+└── tools/
+    ├── bin/
+    ├── lib/
+    ├── NOTICE.txt
+    └── source.properties
 ```
 
 > **_NOTE:_** 
@@ -83,13 +84,13 @@ These commands are the same for both Linux and Windows. However, for **Windows**
 Go to the `$ANDROID_HOME/cmdline-tools/tools/bin` folder and run the following command to update the repository:
 
 ```console
-$ ./sdkmanager
+user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ ./sdkmanager
 ```
 
 Install packages required for the Android emulator to work:
 
 ```console
-$ ./sdkmanager platform-tools emulator
+user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ ./sdkmanager platform-tools emulator
 ```
 
 ### 4.2 Select the correct system-image to use
@@ -98,7 +99,7 @@ Next we need to select a system image to load in the Android emulator.
 To get a list of latest downloadable system images (this [page](https://source.android.com/setup/start/build-numbers#platform-code-names-versions-api-levels-and-ndk-releases) has a list of all API numbers, at the time of this writting API version 30 is the latest), run the command:
 
 ```console
-$ ./sdkmanager --list | grep "system-images;android-30"
+user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ ./sdkmanager --list | grep "system-images;android-30"
 
 system-images;android-30;google_apis;x86_64              | 10   | Google APIs Intel x86 Atom_64 System Image | system-images/android-30/google_apis/x86_64/
 system-images;android-30;google_apis;x86                 | 9    | Google APIs Intel x86 Atom System Image                             
@@ -118,7 +119,7 @@ For the best performance choose a system-image for the `x86_64` architecture.
 Download the packages using the same API level number you selected in the step above. For example:
 
 ```console
-$ ./sdkmanager "platforms;android-30" "system-images;android-30;google_apis;x86_64" "build-tools;30.0.3"
+user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ ./sdkmanager "platforms;android-30" "system-images;android-30;google_apis;x86_64" "build-tools;30.0.3"
 ```
 
 ### 4.4 Create a new AVD
@@ -128,7 +129,7 @@ $ ./sdkmanager "platforms;android-30" "system-images;android-30;google_apis;x86_
 To create a new AVD, we need to use the system image we downloaded in the step above. Run the following command:
 
 ```console
-$ ./avdmanager create avd -n "AFD2_API_30" -k "system-images;android-30;google_apis;x86_64"
+user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ ./avdmanager create avd -n "AFD2_API_30" -k "system-images;android-30;google_apis;x86_64"
 ```
 
 > **_NOTE:_**
@@ -138,7 +139,7 @@ $ ./avdmanager create avd -n "AFD2_API_30" -k "system-images;android-30;google_a
 Confirm that the AVD has been successfully created using the command below:
 
 ```console
-$ ./avdmanager list avd
+user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ ./avdmanager list avd
 Available Android Virtual Devices:
     Name: AFD2_API_30
     Path: /home/user/.android/avd/AFD2_API_30.avd
@@ -162,8 +163,8 @@ hw.keyboard=yes
 To run an AVD do the following commands:
 
 ```console
-$ cd $ANDROID_HOME/emulator/
-$ ./emulator -avd "AFD2_API_30"
+user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ cd $ANDROID_HOME/emulator/
+user@linux:ANDROID_HOME/emulator$ ./emulator -avd "AFD2_API_30"
 ```
 
 > **_NOTE_**
@@ -171,7 +172,7 @@ $ ./emulator -avd "AFD2_API_30"
 > You might need to add your username to the `kvm` group:
 > 
 > ```console
-> sudo gpasswd -a $USER kvm
+> $ sudo gpasswd -a $USER kvm
 > ```
 >
 > After this command you need to logout, and login again for the changes to take effect.
@@ -188,15 +189,15 @@ From time to time you might need to update the installed tools.
 To update de emulator do the following commands:
 
 ```console
-$ cd $ANDROID_HOME/tools/
-$ ./android update sdk --no-ui
+user@linux:ANDROID_HOME$ cd $ANDROID_HOME/tools/
+user@linux:ANDROID_HOME/tools$ ./android update sdk
 ```
 
 To update the SDK do the following commands:
 
 ```console
-$ cd $ANDROID_HOME/cmdline-tools/tools/bin
-$ ./sdkmanager --update
+user@linux:ANDROID_HOME/tools$ cd $ANDROID_HOME/cmdline-tools/tools/bin
+user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ ./sdkmanager --update
 ```
 
 > **_NOTE_**
@@ -214,7 +215,7 @@ A system-image without `_playstore` won't have access to the Google Play Store. 
 Use the `adb` commands to connect to the emulator:
 
 ```console
-$ adb devices
+user@linux:ANDROID_HOME/platform-tools$ adb devices
 List of devices attached
 emulator-5554   device
 ```
@@ -222,7 +223,7 @@ emulator-5554   device
 Then, inside the directory where you downloaded the APK file use `adb install <file>.apk`, for example:
 
 ```console
-$ adb install com.google.android.apps.authenticator2_5.10.apk
+user@linux:ANDROID_HOME/platform-tools$ adb install com.google.android.apps.authenticator2_5.10.apk
 Success
 ```
 
@@ -231,7 +232,7 @@ Success
 **Public data** -- data that is available even on non-rooted devices:
 
 ```console
-$ adb shell
+user@linux:ANDROID_HOME/platform-tools$ adb shell
 generic_x86_64_arm64:/ $ cd /storage/emulated/0/Android/data/<app dir>
 ```
 
@@ -251,14 +252,14 @@ However, there are 4 links that can be used as alternative paths to `/storage/em
 So, you can use also a shorter path:
 
 ```console
-$ adb shell
+user@linux:ANDROID_HOME/platform-tools$ adb shell
 generic_x86_64_arm64:/ $ cd /sdcard/Android/data/<app dir>
 ```
 
 **Private data** -- data that is only available with root (notice the change from `$` to `#` in the prompt):
 
-```text
-$ adb shell
+```console
+user@linux:ANDROID_HOME/platform-tools$ adb shell
 generic_x86_64_arm64:/ $ su
 generic_x86_64_arm64:/ # cd /data/data/<app dir>
 ```
@@ -268,7 +269,7 @@ generic_x86_64_arm64:/ # cd /data/data/<app dir>
 1. Connect to the Android emulator and follow the steps bellow to create a `tgz` file with the contents of the private directory af an app:
 
 ```console
-$ adb shell
+user@linux:ANDROID_HOME/platform-tools$ adb shell
 generic_x86_64_arm64:/ $ su
 generic_x86_64_arm64:/ # cd /data/data/
 generic_x86_64_arm64:/ # tar -cvzf /sdcard/Download/<compressed filename>.tgz <app folder>/
@@ -287,7 +288,7 @@ generic_x86_64_arm64:/ $ exit
 2. Copy the `tgz` file into your computer for analysis
 
 ```console
-$ adb pull /sdcard/Download/<compressed filename>.tgz
+user@linux:ANDROID_HOME/platform-tools$ adb pull /sdcard/Download/<compressed filename>.tgz
 /sdcard/Download/<compressed filename>.tgz: 1 file pulled. 0.1 MB/s (180 bytes in 0.010s)
 ```
 
