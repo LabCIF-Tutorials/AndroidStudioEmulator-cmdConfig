@@ -30,7 +30,7 @@ This page is heavely based on:
 
 - https://linuxhint.com/setup-android-emulator-without-installing-android-studio-in-linux/
 
-Therefore, credits should go to its authors.
+Therefore, credits should go to its author.
 
 ## 1. Preperation
 
@@ -47,7 +47,9 @@ $ANDROID_HOME/cmdline-tools/
                   └── source.properties
 ```
 
-> **_NOTE:_** `$ANDROID_HOME` is any directory where you want to install the files.
+> **_NOTE:_** 
+> 
+> `$ANDROID_HOME` is any directory where you want to install the files.
 For example, on Linux `$ANDROID_HOME` can be `/opt/Android/`
 
 
@@ -164,6 +166,16 @@ $ cd $ANDROID_HOME/emulator/
 $ ./emulator -avd "AFD2_API_30"
 ```
 
+> **_NOTE_**
+>
+> You might need to add your username to the `kvm` group:
+> 
+> ```bash
+> sudo gpasswd -a $USER kvm
+> ```
+>
+> After this command you need to logout, and login again for the changes to take effect.
+
 Below are several print screens of Android running inside the emulator.
 Android home screen        |  Settings screen
 :-------------------------:|:-------------------------:
@@ -279,6 +291,6 @@ $ adb pull /sdcard/Download/<compressed filename>.tgz
 /sdcard/Download/<compressed filename>.tgz: 1 file pulled. 0.1 MB/s (180 bytes in 0.010s)
 ```
 
-3. If you're using Windows set up first [Windows Subsystem for Linux (WSL)](https://docs.microsoft.com/en-us/windows/wsl/install-win10), or a Linux VM, and copy the `<compressed filename>.tgz` inside the WSL/VM to avoid losing data during the decompression (see the note above)
+3. If you're using Windows set up first a Linux VM, and copy the `<compressed filename>.tgz` inside the VM to avoid losing data during the decompression (see the note above)
 
 4. Decompress the file with `7z`, or other tool that supports `.tgz` files, and start the analysis
