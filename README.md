@@ -57,7 +57,7 @@ For example, on Linux `$ANDROID_HOME` can be `/opt/Android/`
 
 Install `adb` tools:
 
-```bash
+```console
 sudo apt install adb
 ```
 
@@ -82,13 +82,13 @@ These commands are the same for both Linux and Windows. However, for **Windows**
 
 Go to the `$ANDROID_HOME/cmdline-tools/tools/bin` folder and run the following command to update the repository:
 
-```bash
+```console
 $ ./sdkmanager
 ```
 
 Install packages required for the Android emulator to work:
 
-```bash
+```console
 $ ./sdkmanager platform-tools emulator
 ```
 
@@ -97,7 +97,7 @@ $ ./sdkmanager platform-tools emulator
 Next we need to select a system image to load in the Android emulator. 
 To get a list of latest downloadable system images (this [page](https://source.android.com/setup/start/build-numbers#platform-code-names-versions-api-levels-and-ndk-releases) has a list of all API numbers, at the time of this writting API version 30 is the latest), run the command:
 
-```bash
+```console
 $ ./sdkmanager --list | grep "system-images;android-30"
 
 system-images;android-30;google_apis;x86_64              | 10   | Google APIs Intel x86 Atom_64 System Image | system-images/android-30/google_apis/x86_64/
@@ -117,7 +117,7 @@ For the best performance choose a system-image for the `x86_64` architecture.
 
 Download the packages using the same API level number you selected in the step above. For example:
 
-```bash
+```console
 $ ./sdkmanager "platforms;android-30" "system-images;android-30;google_apis;x86_64" "build-tools;30.0.3"
 ```
 
@@ -127,7 +127,7 @@ $ ./sdkmanager "platforms;android-30" "system-images;android-30;google_apis;x86_
 
 To create a new AVD, we need to use the system image we downloaded in the step above. Run the following command:
 
-```bash
+```console
 $ ./avdmanager create avd -n "AFD2_API_30" -k "system-images;android-30;google_apis;x86_64"
 ```
 
@@ -137,7 +137,7 @@ $ ./avdmanager create avd -n "AFD2_API_30" -k "system-images;android-30;google_a
 
 Confirm that the AVD has been successfully created using the command below:
 
-```bash
+```console
 $ ./avdmanager list avd
 Available Android Virtual Devices:
     Name: AFD2_API_30
@@ -149,7 +149,7 @@ Available Android Virtual Devices:
 
 Note the path of AVD in the output above. At the same path, we can find a `config.ini` file that can be used to change configuration parameters of the AVD. Edit the file `config.ini` and change the value to `yes`:
 
-```bash
+```console
 hw.keyboard=yes
 ```
 
@@ -161,7 +161,7 @@ hw.keyboard=yes
 
 To run an AVD do the following commands:
 
-```bash
+```console
 $ cd $ANDROID_HOME/emulator/
 $ ./emulator -avd "AFD2_API_30"
 ```
@@ -170,7 +170,7 @@ $ ./emulator -avd "AFD2_API_30"
 >
 > You might need to add your username to the `kvm` group:
 > 
-> ```bash
+> ```console
 > sudo gpasswd -a $USER kvm
 > ```
 >
@@ -187,14 +187,14 @@ Android home screen        |  Settings screen
 From time to time you might need to update the installed tools. 
 To update de emulator do the following commands:
 
-```bash
+```console
 $ cd $ANDROID_HOME/tools/
 $ ./android update sdk --no-ui
 ```
 
 To update the SDK do the following commands:
 
-```bash
+```console
 $ cd $ANDROID_HOME/cmdline-tools/tools/bin
 $ ./sdkmanager --update
 ```
@@ -213,7 +213,7 @@ A system-image without `_playstore` won't have access to the Google Play Store. 
 
 Use the `adb` commands to connect to the emulator:
 
-```bash
+```console
 $ adb devices
 List of devices attached
 emulator-5554   device
@@ -221,7 +221,7 @@ emulator-5554   device
 
 Then, inside the directory where you downloaded the APK file use `adb install <file>.apk`, for example:
 
-```bash
+```console
 $ adb install com.google.android.apps.authenticator2_5.10.apk
 Success
 ```
@@ -230,7 +230,7 @@ Success
 
 **Public data** -- data that is available even on non-rooted devices:
 
-```bash
+```console
 $ adb shell
 generic_x86_64_arm64:/ $ cd /storage/emulated/0/Android/data/<app dir>
 ```
@@ -250,7 +250,7 @@ However, there are 4 links that can be used as alternative paths to `/storage/em
 
 So, you can use also a shorter path:
 
-```bash
+```console
 $ adb shell
 generic_x86_64_arm64:/ $ cd /sdcard/Android/data/<app dir>
 ```
@@ -286,7 +286,7 @@ generic_x86_64_arm64:/ $ exit
 
 2. Copy the `tgz` file into your computer for analysis
 
-```bash
+```console
 $ adb pull /sdcard/Download/<compressed filename>.tgz
 /sdcard/Download/<compressed filename>.tgz: 1 file pulled. 0.1 MB/s (180 bytes in 0.010s)
 ```
