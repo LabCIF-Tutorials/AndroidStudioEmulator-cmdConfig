@@ -267,7 +267,7 @@ generic_x86_64_arm64:/ # cd /data/data/<app dir>
 
 1. Connect to the Android emulator and follow the steps bellow to create a `tgz` file with the contents of the private directory af an app:
 
-```bash
+```console
 $ adb shell
 generic_x86_64_arm64:/ $ su
 generic_x86_64_arm64:/ # cd /data/data/
