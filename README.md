@@ -58,7 +58,7 @@ For example, on Linux `$ANDROID_HOME` can be `/opt/Android/`
 Install `adb` tools:
 
 ```console
-sudo apt install adb
+user@linux:ANDROID_HOME$ sudo apt install adb
 ```
 
 ## 3. Windows specific set up
