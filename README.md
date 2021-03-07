@@ -50,9 +50,7 @@ cmdline-tools/
 
 > **_NOTE:_** 
 > 
-> `$ANDROID_HOME` is any directory where you want to install the files.
-For example, on Linux `$ANDROID_HOME` can be `/opt/Android/`
-
+> `$ANDROID_HOME` is any directory where you want to install the files and should be replaced by the actual directory where the files were installed. For example, on Linux `$ANDROID_HOME` can be `/opt/Android/`
 
 ## 2. Linux specific set up
 
