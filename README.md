@@ -176,6 +176,7 @@ user@linux:ANDROID_HOME/emulator$ ./emulator -avd "AFD2_API_30"
 > After this command you need to logout, and login again for the changes to take effect.
 
 Below are several print screens of Android running inside the emulator.
+
 Android home screen        |  Settings screen
 :-------------------------:|:-------------------------:
 ![Android home screen](imgs/Android-1.png "Android home screen on the emulator")  | ![Android settings screen](imgs/Android.png "Settings screen on the emulator")
