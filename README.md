@@ -141,7 +141,7 @@ Available Android Virtual Devices:
   Sdcard: 512 MB
 ```
 
-Note the path of AVD in the output above. At the same path, we can find a `config.ini` file that can be used to change configuration parameters of the AVD. Edit the file `config.ini` and change the value to `yes`:
+Note the path of AVD in the output above. At the same path (`/home/user/.android/avd/AFD2_API_30.avd/` in this example), we can find a `config.ini` file that can be used to change configuration parameters of the AVD. Edit the file `config.ini` and change the value to `yes`:
 
 ```console
 hw.keyboard=yes
