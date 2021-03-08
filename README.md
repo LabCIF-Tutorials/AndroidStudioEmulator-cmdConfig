@@ -2,7 +2,7 @@
 
 To run Android on our PCs there are several options, being [Android Studio](https://developer.android.com/studio) one of them. However, Android Studio was created for Android developers and has a complex GUI with lots of features. Therefore, consumes lots of resources even without running the embedded emulator. To test apps and the files they generate, we don't need the Android Studio GUI.
 
-This page explains how to set up and run the Android Studio Emulator **without** the Android Studio GUI.
+This page explains how to set up and run the Android Studio Emulator **without** the Android Studio GUI using the command line tools.
 
 ## Table of Contents
 
