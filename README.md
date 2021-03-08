@@ -1,28 +1,23 @@
-# AndroidStudioEmulator-cmdConfig
+# AndroidStudioEmulator-cmdConfig <!-- omit in toc -->
 
 To run Android on our PCs there are several options, being [Android Studio](https://developer.android.com/studio) one of them. However, Android Studio was created for Android developers and has a complex GUI with lots of features. Therefore, consumes lots of resources even without running the embedded emulator. To test apps and the files they generate, we don't need the Android Studio GUI.
 
 This page explains how to set up and run the Android Studio Emulator **without** the Android Studio GUI using the command line tools.
 
-## Table of Contents
+## Table of Contents <!-- omit in toc -->
 
-- [Android4QEMU](#android4qemu)
-  - [Table of Contents](#table-of-contents)
-  - [Credits](#credits)
-  - [1. Preperation](#1-preperation)
-  - [2. Linux specific set up](#2-linux-specific-set-up)
-  - [3. Windows specific set up](#3-windows-specific-set-up)
-  - [4. Commands to create an Android Virtual Device (AVD)](#4-commands-to-create-an-android-virtual-device-avd)
-    - [4.1 Install Required Packages](#41-install-required-packages)
-    - [4.2 Select the correct system-image to use](#42-select-the-correct-system-image-to-use)
-    - [4.3 Download and install the selected system-image](#43-download-and-install-the-selected-system-image)
-    - [4.4 Create a new AVD](#44-create-a-new-avd)
-    - [4.5 Run the AVD](#45-run-the-avd)
-    - [4.6 Update emulator and SDK tools](#46-update-emulator-and-sdk-tools)
-  - [5. Android apps and its files](#5-android-apps-and-its-files)
-    - [5.1 Install apps](#51-install-apps)
-    - [5.2 Important directories](#52-important-directories)
-    - [5.3 Extract data](#53-extract-data)
+- [Credits](#credits)
+- [1. Preperation](#1-preperation)
+- [2. Linux specific set up](#2-linux-specific-set-up)
+- [3. Windows specific set up](#3-windows-specific-set-up)
+- [4. Commands to create an Android Virtual Device (AVD)](#4-commands-to-create-an-android-virtual-device-avd)
+  - [4.1 Install Required Packages](#41-install-required-packages)
+  - [4.2 Select the correct system-image to use](#42-select-the-correct-system-image-to-use)
+  - [4.3 Download and install the selected system-image](#43-download-and-install-the-selected-system-image)
+  - [4.4 Create a new AVD](#44-create-a-new-avd)
+  - [4.5 Run the AVD](#45-run-the-avd)
+  - [4.6 Update emulator and SDK tools](#46-update-emulator-and-sdk-tools)
+- [5. Exercise](#5-exercise)
 
 ## Credits 
 
@@ -202,94 +197,6 @@ user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ ./sdkmanager --update
 >
 > The `android` command seems to be deprecated in favor of `sdkmanager`, however, some functionalities weren't ported yet into the new tool.
 
-## 5. Android apps and its files
+## 5. Exercise
 
-This sections shows how to install apps inside the Android emulator and also how to get the files produced by those apps to later perform a digital forensics analysis.
-
-### 5.1 Install apps
-
-A system-image without `_playstore` won't have access to the Google Play Store. So, to install apps you need to go to a website, like <https://www.apkmirror.com/> and download the `APK` file of the app you want to install.
-
-Use the `adb` commands to connect to the emulator:
-
-```console
-user@linux:ANDROID_HOME/platform-tools$ adb devices
-List of devices attached
-emulator-5554   device
-```
-
-Then, inside the directory where you downloaded the APK file use `adb install <file>.apk`, for example:
-
-```console
-user@linux:ANDROID_HOME/platform-tools$ adb install com.google.android.apps.authenticator2_5.10.apk
-Success
-```
-
-### 5.2 Important directories
-
-**Public data** -- data that is available even on non-rooted devices:
-
-```console
-user@linux:ANDROID_HOME/platform-tools$ adb shell
-generic_x86_64_arm64:/ $ cd /storage/emulated/0/Android/data/<app dir>
-```
-
-However, there are 4 links that can be used as alternative paths to `/storage/emulated/0/` and, therefore, to reach the public data dir:
-
-```text
-/
-├── sdcard/ → /storage/self/primary/
-├── mnt/
-│   ├── sdcard/ → /storage/self/primary/
-│   └── user/0/primary/ → /storage/emulated/0/
-└── storage/
-    ├── self/primary/ → /mnt/user/0/primary/
-    └── emulated/0/Android/data/
-```
-
-So, you can use also a shorter path:
-
-```console
-user@linux:ANDROID_HOME/platform-tools$ adb shell
-generic_x86_64_arm64:/ $ cd /sdcard/Android/data/<app dir>
-```
-
-**Private data** -- data that is only available with root (notice the change from `$` to `#` in the prompt):
-
-```console
-user@linux:ANDROID_HOME/platform-tools$ adb shell
-generic_x86_64_arm64:/ $ su
-generic_x86_64_arm64:/ # cd /data/data/<app dir>
-```
-
-### 5.3 Extract data
-
-1. Connect to the Android emulator and follow the steps bellow to create a `tgz` file with the contents of the private directory af an app:
-
-```console
-user@linux:ANDROID_HOME/platform-tools$ adb shell
-generic_x86_64_arm64:/ $ su
-generic_x86_64_arm64:/ # cd /data/data/
-generic_x86_64_arm64:/ # tar -cvzf /sdcard/Download/<compressed filename>.tgz <app folder>/
-generic_x86_64_arm64:/ # exit
-generic_x86_64_arm64:/ $ exit
-```
-
-> **_NOTE_**
->
-> Don't copy the files directly to your computer with `adb pull` command, specially if you're using Windows, because you might loose information:
-> 
-> - for example, the files `file.txt` and `File.txt` are two different files under Linux (Android uses a Linux kernel) but are the same file under Windows
-> - Windows doesn't recognizes Linux's links
-> - there are some characters that are allowed in Linux file names, but that aren't supported on Windows
-
-2. Copy the `tgz` file into your computer for analysis
-
-```console
-user@linux:ANDROID_HOME/platform-tools$ adb pull /sdcard/Download/<compressed filename>.tgz
-/sdcard/Download/<compressed filename>.tgz: 1 file pulled. 0.1 MB/s (180 bytes in 0.010s)
-```
-
-3. If you're using Windows set up first a Linux VM, and copy the `<compressed filename>.tgz` inside the VM to avoid losing data during the decompression (see the note above)
-
-4. Decompress the file with `7z`, or other tool that supports `.tgz` files, and start the analysis
+After setting up the Android Studio Emulator and making sure it's working, do the [exercise listed here](https://labcif.github.io/AndroidStudioEmulator-acquireAppsData/)
