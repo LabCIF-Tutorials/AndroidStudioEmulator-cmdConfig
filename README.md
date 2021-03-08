@@ -4,6 +4,10 @@ To run Android on our PCs there are several options, being [Android Studio](http
 
 This page explains how to set up and run the Android Studio Emulator **without** the Android Studio GUI using the command line tools.
 
+This work is licensed under a [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/)
+
+![by-nc-sa](https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png)
+
 ## Table of Contents <!-- omit in toc -->
 
 - [Credits](#credits)
