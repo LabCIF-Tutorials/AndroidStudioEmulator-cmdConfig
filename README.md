@@ -155,6 +155,13 @@ hw.keyboard=yes
 >
 > If you don't do this change, the Android buttons (home, back, and overview) won't work and you won't be able to operate the Android running in the emulator.
 
+Optionally, you can enable also the cameras by setting these values in `config.ini`:
+
+```console
+hw.camera.back = webcam0
+hw.camera.front = webcam0
+```
+
 ### 4.5 Run the AVD
 
 To run an AVD do the following commands:
