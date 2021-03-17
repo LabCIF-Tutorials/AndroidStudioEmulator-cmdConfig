@@ -162,6 +162,8 @@ hw.camera.back = webcam0
 hw.camera.front = webcam0
 ```
 
+For more information about the parameters and their values read [this page](https://android.googlesource.com/platform/external/qemu/+/b5b78438ae9ff3b90aafdab0f4f25585affc22fb/android/avd/hardware-properties.ini).
+
 ### 4.5 Run the AVD
 
 To run an AVD do the following commands:
