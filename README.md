@@ -35,12 +35,12 @@ Therefore, credits should go to its author.
 
 1. Download the latest version of [Android Command Line Tools](https://developer.android.com/studio#downloads) for your Operating System (OS), scroll down to the command line section.
 
-2. Extract the downloaded archive and make a new folder named “tools” inside “cmdline-tools” directory. Copy and paste all files from “cmdline-tools” folder to “tools” folder. Your final directory layout should look like this:
+2. Extract the downloaded archive and make a new folder named `latest` inside `cmdline-tools` directory. Copy and paste all files from `cmdline-tools` folder to `latest` folder. Your final directory layout should look like this:
 
 ```console
 user@linux:ANDROID_HOME$ tree -F -L 2 cmdline-tools
 cmdline-tools/
-└── tools/
+└── latest/
     ├── bin/
     ├── lib/
     ├── NOTICE.txt
@@ -78,10 +78,10 @@ These commands are the same for both Linux and Windows. However, for **Windows**
 
 ### 4.1 Install Required Packages
 
-Go to the `$ANDROID_HOME/cmdline-tools/tools/bin` folder and run the following command to update the repository:
+Go to the `$ANDROID_HOME/cmdline-tools/latest/bin` folder and run the following command to update the repository:
 
 ```console
-user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ ./sdkmanager
+user@linux:ANDROID_HOME/cmdline-tools/latest/bin$ ./sdkmanager --update
 ```
 
 Install packages required for the Android emulator to work:
@@ -93,30 +93,41 @@ user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ ./sdkmanager platform-tools emu
 ### 4.2 Select the correct system-image to use
 
 Next we need to select a system image to load in the Android emulator. 
-To get a list of latest downloadable system images (this [page](https://source.android.com/setup/start/build-numbers#platform-code-names-versions-api-levels-and-ndk-releases) has a list of all API numbers, at the time of this writting API version 30 is the latest), run the command:
+To get a list of latest downloadable system images (this [page](https://source.android.com/setup/start/build-numbers#platform-code-names-versions-api-levels-and-ndk-releases) has a list of all API numbers, lets use API version 30 (Android 11, we want to avoid the latest and more secure Android version), run the command:
 
 ```console
-user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ ./sdkmanager --list | grep "system-images;android-30"
+user@linux:ANDROID_HOME/cmdline-tools/latest/bin$ ./sdkmanager --list | grep "system-images;android-30" | grep x86_64
 
-system-images;android-30;google_apis;x86_64              | 10   | Google APIs Intel x86 Atom_64 System Image | system-images/android-30/google_apis/x86_64/
-system-images;android-30;google_apis;x86                 | 9    | Google APIs Intel x86 Atom System Image                             
-system-images;android-30;google_apis;x86_64              | 10   | Google APIs Intel x86 Atom_64 System Image                          
-system-images;android-30;google_apis_playstore;x86       | 9    | Google Play Intel x86 Atom System Image                             
-system-images;android-30;google_apis_playstore;x86_64    | 10   | Google Play Intel x86 Atom_64 System Image
+  system-images;android-30;default;x86_64                                                  | 10           | Intel x86_64 Atom System Image
+  system-images;android-30;google_apis;x86_64                                              | 11           | Google APIs Intel x86_64 Atom System Image
+  system-images;android-30;google_apis_playstore;x86_64                                    | 10           | Google Play Intel x86_64 Atom System Image
 ```
 
-For the best performance choose a system-image for the `x86_64` architecture.
+For the best performance choose a system-image for the `x86_64` architecture: `system-images;android-30;google_apis;x86_64`.
 
 > **_NOTE:_**
 >
 > We want root access to the folders inside the emulator, therefore we **cannot select** a system-image with `_playstore`
+
+
+To find the build tools for API version 30 do:
+
+```console
+user@linux:ANDROID_HOME/cmdline-tools/latest/bin$ ./sdkmanager --list | grep "build-tools;30"
+
+  build-tools;30.0.0                                                                       | 30.0.0       | Android SDK Build-Tools 30
+  build-tools;30.0.1                                                                       | 30.0.1       | Android SDK Build-Tools 30.0.1
+  build-tools;30.0.2                                                                       | 30.0.2       | Android SDK Build-Tools 30.0.2
+  build-tools;30.0.3                                                                       | 30.0.3       | Android SDK Build-Tools 30.0.3
+```
+
 
 ### 4.3 Download and install the selected system-image 
 
 Download the packages using the same API level number you selected in the step above. For example:
 
 ```console
-user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ ./sdkmanager "platforms;android-30" "system-images;android-30;google_apis;x86_64" "build-tools;30.0.3"
+user@linux:ANDROID_HOME/cmdline-tools/latest/bin$ ./sdkmanager "platforms;android-30" "system-images;android-30;google_apis;x86_64" "build-tools;30.0.3"
 ```
 
 ### 4.4 Create a new AVD
@@ -126,7 +137,7 @@ user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ ./sdkmanager "platforms;android
 To create a new AVD, we need to use the system image we downloaded in the step above. Run the following command:
 
 ```console
-user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ ./avdmanager create avd -n "AFD2_API_30" -k "system-images;android-30;google_apis;x86_64"
+user@linux:ANDROID_HOME/cmdline-tools/latest/bin$ ./avdmanager create avd -n "AFD2_API_30" -k "system-images;android-30;google_apis;x86_64"
 ```
 
 > **_NOTE:_**
@@ -136,7 +147,7 @@ user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ ./avdmanager create avd -n "AFD
 Confirm that the AVD has been successfully created using the command below:
 
 ```console
-user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ ./avdmanager list avd
+user@linux:ANDROID_HOME/cmdline-tools/latest/bin$ ./avdmanager list avd
 Available Android Virtual Devices:
     Name: AFD2_API_30
     Path: /home/user/.android/avd/AFD2_API_30.avd
@@ -169,7 +180,7 @@ For more information about the parameters and their values read [this page](http
 To run an AVD do the following commands:
 
 ```console
-user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ cd $ANDROID_HOME/emulator/
+user@linux:ANDROID_HOME/cmdline-tools/latest/bin$ cd $ANDROID_HOME/emulator/
 user@linux:ANDROID_HOME/emulator$ ./emulator -avd "AFD2_API_30"
 ```
 
@@ -202,8 +213,8 @@ user@linux:ANDROID_HOME/tools$ ./android update sdk
 To update the SDK do the following commands:
 
 ```console
-user@linux:ANDROID_HOME/tools$ cd $ANDROID_HOME/cmdline-tools/tools/bin
-user@linux:ANDROID_HOME/cmdline-tools/tools/bin$ ./sdkmanager --update
+user@linux:ANDROID_HOME$ cd $ANDROID_HOME/cmdline-tools/latest/bin
+user@linux:ANDROID_HOME/cmdline-tools/latest/bin$ ./sdkmanager --update
 ```
 
 > **_NOTE_**
